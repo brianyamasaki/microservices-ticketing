@@ -1,6 +1,7 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
 deploy:
+  statusCheckDeadlineSeconds: 180
   kubectl:
     manifests:
       - ./infra/k8s/*
@@ -15,4 +16,12 @@ build:
       sync:
         manual:
           - src: 'src/**/*.ts'
+            dest: .
+    - image: briany2000/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
             dest: .
