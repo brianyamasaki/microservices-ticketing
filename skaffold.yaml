@@ -1,7 +1,6 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
 deploy:
-  statusCheckDeadlineSeconds: 180
   kubectl:
     manifests:
       - ./infra/k8s/*
